@@ -1,16 +1,7 @@
-# This is a sample Python script.
+from wiseml.tensorflow import Tensorflow
 
-# Press ⌃R to execute it or replace it with your code.
-# Press Double ⇧ to search everywhere for classes, files, tool windows, actions, and settings.
+# Configure an MXNet Estimator (no training happens yet)
+tf_estimator = Tensorflow('train.py', source_dir='src')
 
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press ⌘F8 to toggle the breakpoint.
-
-
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
-
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+# Starts a SageMaker training job and waits until completion.
+tf_estimator.fit('s3://my_bucket/my_training_data/')
