@@ -22,6 +22,5 @@ func server() {
 }
 
 func main() {
-	fmt.Println("Hello World")
 	server()
 }
