@@ -28,7 +28,10 @@ func (jm *JobManager) launchContainer(image string, sourceDir string, artifactDi
 	if err != nil {
 		panic(err)
 	}
-	io.Copy(os.Stdout, reader)
+	_, err = io.Copy(os.Stdout, reader)
+	if err != nil {
+		panic(err)
+	}
 
 	workdir := "/tmp"
 	resp, err := cli.ContainerCreate(ctx, &container.Config{

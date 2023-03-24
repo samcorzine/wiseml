@@ -1,14 +1,20 @@
 import requests
 import time
+import yaml
+import os
 
 
-def load_config() -> dict:
-    with open("config.json") as f:
-        return json.load(f)
+def load_config(path) -> dict:
+    with open(path) as f:
+        config = yaml.load(f, Loader=yaml.FullLoader)
+    return config
 
 class Client:
 
-    def __init__(self, url=None):
+    def __init__(self):
+        config_path = os.path.expanduser("~/.config/wise-ml.yaml")
+        config = load_config(config_path)
+        self.url = config["server-url"]
 
 
     def launch_training_job(self, source_path: str):
@@ -21,7 +27,7 @@ class Client:
         print("JobID: " + job_id)
         JobStatus = "UNKNOWN"
         while JobStatus != "Completed":
-            time.sleep(0.1)
+            time.sleep(1)
             logs_resp = requests.post(self.url + "/api/v1/job/logs", json={"JobID": job_id, })
             logs_json = logs_resp.json()
             JobStatus = logs_json["JobStatus"]
