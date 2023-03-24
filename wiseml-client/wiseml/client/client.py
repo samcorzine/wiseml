@@ -1,9 +1,15 @@
 import requests
 import time
+
+
+def load_config() -> dict:
+    with open("config.json") as f:
+        return json.load(f)
+
 class Client:
 
     def __init__(self, url=None):
-        self.url = "http://localhost:9021"
+
 
     def launch_training_job(self, source_path: str):
         endpoint = "/api/v1/job/launch"
