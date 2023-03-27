@@ -9,6 +9,7 @@ It has two components right now, a server and a client. The server is a Golang b
 To install the server, you need to have Golang and make installed. From there you should be able to run
 
 ```
+cd wiseml-server
 make server
 ```
 
