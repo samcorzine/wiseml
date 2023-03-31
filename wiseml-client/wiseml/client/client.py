@@ -11,10 +11,13 @@ def load_config(path) -> dict:
 
 class Client:
 
-    def __init__(self):
-        config_path = os.path.expanduser("~/.config/wise-ml.yaml")
-        config = load_config(config_path)
-        self.url = config["server-url"]
+    def __init__(self, **kwargs):
+        self.url = kwargs.get("url", None)
+        if not self.url:
+            conf = load_config(os.path.expanduser("~/.config/wiseml.yaml"))
+            self.url = conf["server-url"]
+
+
 
 
     def launch_training_job(self, source_path: str):

@@ -1,6 +1,6 @@
 #PHONY: run
 build:
-	go build -o bin/main
+	nix-shell -p go --run "go build -o bin/main"
 
 run: build
 	./bin/main

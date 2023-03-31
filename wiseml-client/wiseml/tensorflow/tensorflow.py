@@ -7,7 +7,7 @@ class Tensorflow:
     def __init__(self, entry_point, source_dir, **kwargs):
         self.entry_point = entry_point
         self.source_dir = source_dir
-        self.client = Client()
+        self.client = Client(**kwargs)
 
     def fit(self, input_data):
         print("Tensorflow.fit() called with input_data: " + input_data)
